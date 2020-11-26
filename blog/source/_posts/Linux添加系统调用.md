@@ -249,7 +249,7 @@ int main(int argc, char *argv[])
 
 #### 分析与解决
 
-[添加系统调用](#添加系统调用)这一步是参考了这篇博文https://medium.com/anubhav-shrimal/adding-a-hello-world-system-call-to-linux-kernel-dad32875872，将函数定义写成下面这样
+[添加系统调用](#添加系统调用)这一步是参考了这篇博文https://medium.com/anubhav-shrimal/adding-a-hello-world-system-call-to-linux-kernel-dad32875872, 将函数定义写成下面这样
 
 ```c
 #include <linux/kernel.h>
