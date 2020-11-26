@@ -51,7 +51,7 @@ $ wget -P ~/ https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.10.tar.xz
 
 SYSCALL_DEFINE0(hello)
 {
-    printk("Hello World\n");
+    printk("Hello World\n"); // 写入到系统日志
     return 0;
 }
 ```
@@ -199,7 +199,7 @@ fallback_image="/boot/initramfs-linux59-fallback.img"
 
 ### 测试系统调用
 
-创建文件，内容如下：
+创建文件`test.c`，内容如下：
 
 ```c
 #include <linux/kernel.h>
@@ -235,7 +235,7 @@ int main(int argc, char *argv[])
 
 编译时报错：.tmp_vmlinux.btf: pahole (pahole) is not available
 
-### 分析与解决
+#### 分析与解决
 
 缺少pahole，安装即可：
 
@@ -247,11 +247,11 @@ int main(int argc, char *argv[])
 
 编译时报错：undefined reference to `__x64_sys_hello'
 
-### 分析与解决
+#### 分析与解决
 
-系统调用定义的问题，原本在调用的定义中用的是
+[添加系统调用](#添加系统调用)这一步是参考了这篇博文https://medium.com/anubhav-shrimal/adding-a-hello-world-system-call-to-linux-kernel-dad32875872，将函数定义写成下面这样
 
-```shell
+```c
 #include <linux/kernel.h>
 
 asmlinkage long sys_hello(void)
@@ -261,7 +261,7 @@ asmlinkage long sys_hello(void)
 }
 ```
 
-之后用的是
+根据报错应该将函数名改成`__x64_sys_hello`，也可以使用宏进行定义：
 
 ```c
 #include <linux/kernel.h>
@@ -269,9 +269,9 @@ asmlinkage long sys_hello(void)
 
 SYSCALL_DEFINE0(hello)
 {
-	printk("Hello World\n");
-	return 0;
+    printk("Hello World\n");
+    return 0;
 }
 ```
 
-就解决了问题
+注意：我们在“[在系统调用头文件中添加函数的原型](#在系统调用头文件中添加函数的原型)“这一步中添加的函数名不用改，仍然是`sys_hello`。
