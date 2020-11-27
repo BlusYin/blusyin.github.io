@@ -8,12 +8,12 @@ subtitle: ''
 description: ''
 keywords:
 author: Adil Yin
-language: en
+language: zh-Hans
 timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url: http://example.com
+url: http://adil.com/
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -106,3 +106,12 @@ deploy:
   type: 'git'
   repo: 'git@github.com:BlusYin/blusyin.github.io.git'
   branch: 'master'
+
+# Allow to cache content generation.
+cache:
+  enable: true
+
+# Remove unnecessary files after hexo generate.
+minify: true
+
+

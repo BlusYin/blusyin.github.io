@@ -2,6 +2,7 @@
 title: Hexo进阶配置
 date: 2020-11-27 18:18:09
 tags:
+description: 关于hexo的更多配置
 ---
 
 # 更改主题

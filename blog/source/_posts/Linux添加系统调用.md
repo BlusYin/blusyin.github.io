@@ -2,6 +2,7 @@
 title: Linux添加系统调用
 date: 2020-11-24 21:59:05
 tags:
+description: 在archlinux系统下添加一个hello world系统调用
 ---
 
 # Linux添加系统调用
