@@ -5,6 +5,10 @@ tags:
 description: 关于hexo的更多配置
 ---
 
+> The only thing that would never change is change.
+>
+> 永远不变的是改变
+
 # 更改主题
 
 https://hexo.io/themes/, 这里有很多主题。这里以安装next主题为例，主题仓库https://github.com/next-theme/hexo-theme-next

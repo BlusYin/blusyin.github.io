@@ -5,6 +5,10 @@ tags:
 description: 在archlinux系统下添加一个hello world系统调用
 ---
 
+> Hope is a good thing, and no good thing ever dies.
+>
+> 希望，就如同所有美好的事物一样，永远不会消逝。
+
 # Linux添加系统调用
 
 ## 系统信息
