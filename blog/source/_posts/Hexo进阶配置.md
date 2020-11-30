@@ -60,7 +60,9 @@ $ npm install hexo-asset-link
 
 编辑主题配置文件`theme/next/_config.yml`, 加入`excerpt_exception: true`(next默认已经启用了)
 
-在markdown的front-matter中加入`descrption: `，在后面添加摘要
+在markdown的front-matter中加入`descrption: `，在后面添加摘要，如图：
+
+![image-20201130162801488](Hexo进阶配置/image-20201130162801488.png)
 
 # 修改显示语言
 
