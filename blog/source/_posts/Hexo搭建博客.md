@@ -5,6 +5,10 @@ tags:
 description: 介绍如何使用hexo搭建个人博客并部署到github pages上
 ---
 
+>  Get busy living, or get busy dying
+>
+> 要么忙着活，要么忙着死
+
 # Step1: 安装必备的软件
 
 ## 安装nodejs,npm
