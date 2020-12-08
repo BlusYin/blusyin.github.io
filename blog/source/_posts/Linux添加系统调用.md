@@ -280,3 +280,29 @@ SYSCALL_DEFINE0(hello)
 ```
 
 注意：我们在“[在系统调用头文件中添加函数的原型](#在系统调用头文件中添加函数的原型)“这一步中添加的函数名不用改，仍然是`sys_hello`。
+
+### 问题三
+
+在使用带参数的系统调用时，若函数原型不使用SYSCALL_DEFINE宏会出现未定义结果，如：
+
+```c
+asmlinkage long sys_add(int a, int b)
+{
+	return a+b;
+}
+```
+
+实际调用时得到的返回值是一个无法确定的数。
+
+#### 分析与解决
+
+解决当然就是使用SYSCALL_DEFINE宏进行定义了：
+
+```c
+SYSCALL_DEFINE2(add, int, a, int, b)
+{
+	return a+b;
+}
+```
+
+分析之后再补充。
