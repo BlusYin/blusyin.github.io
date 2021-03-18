@@ -13,15 +13,13 @@ description: 介绍如何使用hexo搭建个人博客并部署到github pages上
 
 ## 安装nodejs,npm
 
-### ArchLinux
+可以使用系统的包管理器进行安装
 
 ```shell
-sudo pacman -S nodejs npm
+$ sudo pacman -S nodejs npm
 ```
 
-### 其他系统
-
-自行去官网安装https://nodejs.org/, 注意，官网把npm和nodejs放在一个包里了，安装nodejs的同时也会安装npm
+也可以去官网https://nodejs.org/下载源码，然后编译安装。 注意，官网把npm和nodejs放在一个包里了，安装nodejs的同时也会安装npm
 
 ### 验证
 
@@ -48,11 +46,11 @@ $ npm install -g hexo-cli # -g表示从git仓库中安装
 $ hexo init blog
 ```
 
-之后会生成一个blog文件夹，里面就是你的博客了
+之后会生成一个blog文件夹，blog就是博客的根目录。
 
 ## 测试博客
 
-进入该路径，输入以下命令：
+进入博客的根目录，输入以下命令：
 
 ```shell
 $ cd blog
@@ -61,6 +59,12 @@ $ hexo server	# 启动本地服务
 ```
 
 完成后打开浏览器输入地址https://localhost:4000, 浏览新创建的博客
+
+注： 如果hexo server无法运行，则需要安装一个hexo-server组件：
+
+```shell
+$ npm install hexo-server --save
+```
 
 ## 创建一篇博文
 
@@ -71,8 +75,8 @@ $ hexo new "title"
 这会在`source/_posts/`路径下生成一个markdown文件，打开进行编辑，输入博文内容并保存，再输入以下命令：
 
 ```shell
-$ hexo g
-$ hexo s
+$ hexo g	# hexo generate
+$ hexo s	# hexo server
 ```
 
 打开网页进行预览
@@ -96,7 +100,7 @@ deploy:
 	branch: '<branch>'
 ```
 
-其中`<repo_url>`表示要填写库url，`<branch>`为该库的一个分支。
+其中`<repo_url>`表示要填写库url，`<branch>`为该库的一个分支(默认为master)
 
 ## 部署
 
@@ -109,7 +113,7 @@ $ npm install hexo-deployer-git --save
 输入以下命令进行部署
 
 ```shell
-$ hexo d
+$ hexo d	# hexo deploy
 ```
 
 打开浏览器，输入github pages的url进行查看。
