@@ -5,7 +5,7 @@ tags:
 description: 关于hexo的更多配置
 ---
 
-> The only thing that would never change is change.
+> The only thing that will never change is change.
 >
 > 永远不变的是改变
 
