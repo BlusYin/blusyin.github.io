@@ -68,7 +68,7 @@ $ hexo server	# 启动本地服务
 $ npm install hexo-server
 ```
 
-> 有些比较旧的博客会带`--save`这个参数，表示将已经安装的包作为依赖添加到package.json文件中，这个设置现在默认是启用的，所以可以不用指定--save参数。
+> 有些比较旧的博客会带`--save`这个参数，表示将已经安装的包作为依赖添加到package.json文件中，这个设置现在默认是启用的，所以可以不用指定`--save`参数。
 
 ## 创建一篇博文
 
@@ -105,6 +105,8 @@ deploy:
 ```
 
 其中`<repo_url>`表示要填写库url，`<branch>`为该库的一个分支(默认为master)
+
+> 将\<repo_url>设置为ssh类型的github库地址即可通过ssh免密部署
 
 ## 部署
 
