@@ -11,7 +11,7 @@ description: 关于hexo的更多配置
 
 # 更改主题
 
-https://hexo.io/themes/, 这里有很多主题。这里以安装next主题为例，主题仓库https://github.com/next-theme/hexo-theme-next
+可以到hexo的官方网站https://hexo.io/themes/查看，有很多主题可供选择。这里以安装next主题为例，主题仓库https://github.com/next-theme/hexo-theme-next
 
 ## 安装next主题
 
@@ -46,7 +46,7 @@ Hexo自带了这一功能，但需要修改配置文件以启用。打开`_confi
 post_asset_folder: true
 ```
 
-还要安装一个组件
+还需要安装`hexo-asset-link`：
 
 ```shell
 $ npm install hexo-asset-link
@@ -58,7 +58,7 @@ $ npm install hexo-asset-link
 
 # 在主页显示摘要
 
-编辑主题配置文件`theme/next/_config.yml`, 加入`excerpt_exception: true`(next默认已经启用了)
+编辑主题配置文件`theme/next/_config.yml`, 加入`excerpt_discription: true`(next主题默认已经启用了)
 
 在markdown的front-matter中加入`descrption: `，在后面添加摘要，如图：
 

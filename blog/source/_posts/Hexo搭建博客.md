@@ -31,7 +31,7 @@ $ npm -v
 ## 安装Hexo
 
 ```shell
-$ npm install -g hexo-cli # -g表示从git仓库中安装
+$ sudo npm install -g hexo-cli # -g表示从git仓库中安装
 ```
 
 库地址https://github.com/hexojs/hexo
@@ -60,11 +60,15 @@ $ hexo server	# 启动本地服务
 
 完成后打开浏览器输入地址https://localhost:4000, 浏览新创建的博客
 
-注： 如果hexo server无法运行，则需要安装一个hexo-server组件：
+可以随时通过`hexo clean`命令清除已经生成的静态网页。
+
+如果hexo server无法运行，则需要安装一个hexo-server组件：
 
 ```shell
-$ npm install hexo-server --save
+$ npm install hexo-server
 ```
+
+> 有些比较旧的博客会带`--save`这个参数，表示将已经安装的包作为依赖添加到package.json文件中，这个设置现在默认是启用的，所以可以不用指定--save参数。
 
 ## 创建一篇博文
 
@@ -104,10 +108,10 @@ deploy:
 
 ## 部署
 
-在部署之前还要安装一个组件
+在部署之前还要安装一个包
 
 ```shell
-$ npm install hexo-deployer-git --save
+$ npm install hexo-deployer-git
 ```
 
 输入以下命令进行部署

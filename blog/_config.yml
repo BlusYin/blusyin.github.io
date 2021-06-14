@@ -6,15 +6,14 @@
 title: Yalger's Blog
 subtitle: ''
 description: ''
-keywords:
+keywords: Computer Science, Cyber Security, Algorithms, Linux
 author: Yalger
-language: zh-CN
+language: en
 timezone: ''
 
 # URL
-## If your site is put in a subdirectory, set url as 'http://example.com/child' and root as '/child/'
-url: http://adil.com/
-root: /
+## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
+url: http://example.com
 permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
@@ -104,14 +103,5 @@ theme: next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: 'git'
-  repo: 'git@github.com:BlusYin/blusyin.github.io.git'
+  repo: 'https://github.com/BlusYin/blusyin.github.io'
   branch: 'master'
-
-# Allow to cache content generation.
-cache:
-  enable: true
-
-# Remove unnecessary files after hexo generate.
-minify: true
-
-
