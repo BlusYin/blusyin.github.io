@@ -1,7 +1,7 @@
 ---
 title: Hexo搭建博客
 date: 2020-11-27 18:18:03
-tags:
+tags: hexo
 description: 介绍如何使用hexo搭建个人博客并部署到github pages上
 ---
 
