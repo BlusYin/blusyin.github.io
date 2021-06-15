@@ -109,7 +109,7 @@ $ sudo pacman -S pavucontrol pulseaudio
 
 ### 用户家目录没有Documents、Downloads、Pictures等默认文件夹
 
-​		安装xdg-user-dirs，这是freedesktop标准里的用户家目录管理工具。安装完后执行`xdg-user-dirs-update`命令就能在~/.config目录下看到两个配置文件：`user-dirs.dirs`和`user-dirs.locale`，前者是相关配置，后者是本地化配置（即语言选项）。
+​		安装xdg-user-dirs，这是freedesktop标准里的用户家目录管理工具。安装完后执行`xdg-user-dirs-update`命令，重新登录后家目录下就自动生成了这些目录录。在~/.config目录下可以看到两个配置文件：`user-dirs.dirs`和`user-dirs.locale`，前者是相关配置，后者是本地化配置（即语言选项）。
 
 ### Thunar没有垃圾桶
 
