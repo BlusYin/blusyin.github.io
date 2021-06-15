@@ -1,4 +1,4 @@
 [submodule "blog/themes/next"]
 	path = blog/themes/next
 	url = https://github.com/next-theme/hexo-theme-next
-	ignore = untracked
+	ignore = dirty
