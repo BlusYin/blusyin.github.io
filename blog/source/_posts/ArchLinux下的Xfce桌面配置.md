@@ -1,7 +1,7 @@
 ---
 title: ArchLinux下的Xfce桌面配置
 date: 2021-06-14 18:55:53
-tags: archlinux, xfce
+tags: xfce
 description: 为了提高在Xfce桌面的工作效率所需要安装的一些软件以及相关的配置
 ---
 
