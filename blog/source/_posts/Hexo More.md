@@ -12,6 +12,8 @@ tags:
 >
 > 永远不变的是改变
 
+当你着手完善你的Hexo博客时，不妨先看看官方文档https://hexo.io/docs/
+
 ## 更改主题
 
 可以到hexo的官方网站https://hexo.io/themes/查看，有很多主题可供选择。这里以安装next主题为例，主题仓库https://github.com/next-theme/hexo-theme-next
