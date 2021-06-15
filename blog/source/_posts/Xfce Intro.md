@@ -41,7 +41,7 @@ $ sudo pacman -S synapse
 
 ## 文档
 
-​		Xfce自带了一个文本编辑器Mousepad，和gedit简直一模一样，功能也足够了，但界面不好看，也没有扩展。安装一个VScode用于日常开发（Atom也行）。PDF阅读器有很多，xreader足矣。Office的话就用libreoffice就好了。Markdown用Typora。
+​		Xfce自带了一个文本编辑器Mousepad，和gedit简直一模一样，功能也足够了，但界面不好看，也没有扩展。安装一个VScode用于日常开发（Atom也行）。PDF阅读器有很多，xreader足矣。Office的话libreoffice或者WPS都还不错。Markdown用Typora。
 
 ```shell
 $ sudo pacman -S code xreader libreoffice-fresh   # libreoffice-fresh是稳定版
