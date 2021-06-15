@@ -1,9 +1,12 @@
 ---
 title: ArchLinux下的Xfce桌面配置
 date: 2021-06-14 18:55:53
+excerpt: Xfce是一个基于GTK 3的轻量级模块化桌面，本文介绍Xfce桌面下的一些实用软件及其相关配置，以提高在Xfce桌面的工作效率
+categories:
+- [Linux, Xfce]
 tags: 
-- Xfce
-description: Xfce是一个基于GTK 3的轻量级模块化桌面，本文介绍Xfce桌面下的一些实用软件及其相关配置，以提高在Xfce桌面的工作效率
+- Desktop Environment
+- Productivity
 ---
 
 > 路漫漫其修远兮，吾将上下而求索
@@ -104,3 +107,4 @@ $ sudo pacman -S pavucontrol pulseaudio
 
 ​		Applications->Settings->Window Manager Tweaks->Accessibility，取消勾选Raise windows when any mouse button is pressed。
 
+## End

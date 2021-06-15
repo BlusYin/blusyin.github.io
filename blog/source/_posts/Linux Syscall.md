@@ -1,17 +1,18 @@
 ---
 title: Linux添加系统调用
 date: 2020-11-24 21:59:05
+excerpt: 在archlinux系统下添加一个hello world系统调用
+categories:
+- Misc
 tags: 
-- Linux
-description: 在archlinux系统下添加一个hello world系统调用
-
+- Linux Kernel
 ---
 
 > Hope is a good thing, and no good thing ever dies.
 >
 > 希望，就如同所有美好的事物一样，永远不会消逝。
 
-# Linux添加系统调用
+
 
 ## 系统信息
 
