@@ -1,7 +1,8 @@
 ---
 title: ArchLinux下的Xfce桌面配置
 date: 2021-06-14 18:55:53
-tags: xfce
+tags: 
+- Xfce
 description: Xfce是一个基于GTK 3的轻量级模块化桌面，本文介绍Xfce桌面下的一些实用软件及其相关配置，以提高在Xfce桌面的工作效率
 ---
 

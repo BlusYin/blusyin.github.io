@@ -1,7 +1,8 @@
 ---
 title: Hexo进阶配置
 date: 2020-11-27 18:18:09
-tags: hexo
+tags:
+- Hexo
 description: 关于hexo的更多配置
 ---
 
