@@ -62,7 +62,7 @@ $ npm install hexo-asset-link
 
 在markdown的front-matter中加入`descrption: `，在后面添加摘要，如图：
 
-![image-20201130162801488](Hexo进阶配置/image-20201130162801488.png)
+![image-20201130162801488](Hexo More/image-20201130162801488.png)
 
 # 修改显示语言
 
