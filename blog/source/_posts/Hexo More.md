@@ -117,7 +117,9 @@ p {
 }
 ```
 
-next主题的base style在*source/css/_common/scaffolding/base.styl*文件中。
+然后执行`hexo clean`清除之前生成的网页和样式，否则新样式无法生效。
+
+> next主题的base style在*source/css/_common/scaffolding/base.styl*文件中。
 
 ## 修改显示语言
 
