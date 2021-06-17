@@ -18,23 +18,19 @@ tags:
 
 可以到hexo的官方网站https://hexo.io/themes/查看，有很多主题可供选择。这里以安装next主题为例，主题仓库https://github.com/next-theme/hexo-theme-next
 
-### 安装next主题
-
-首先进入到博客的根目录，输入命令
+首先进入到博客的根目录，下载next主题仓库：
 
 ```shell
 $ git clone https://github.com/next-theme/hexo-theme-next themes/next
 ```
 
-### 修改配置
-
-打开`_config.yml`文件，找到`theme:` 这一行，将主题修改为next：
+然后打开`_config.yml`文件，找到`theme:` 这一行，将主题修改为next：
 
 ```yml
 theme: next
 ```
 
-### 重新生成网页
+重新生成网页
 
 ```shell
 $ hexo g
@@ -110,6 +106,18 @@ $ npm install hexo-asset-link
 编辑主题配置文件`theme/next/_config.yml`, 加入`excerpt_discription: true`(next主题默认已经启用了)
 
 在markdown的front-matter中加入`excerpt: `，在后面添加摘要。
+
+## 段落自动缩进
+
+修改主题的CSS样式，在段落的样式中添加`text-indent: 2em;`这一项。
+
+```css
+p {
+  text-indent: 2em;
+}
+```
+
+next主题的base style在*source/css/_common/scaffolding/base.styl*文件中。
 
 ## 修改显示语言
 
