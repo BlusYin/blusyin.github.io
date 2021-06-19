@@ -15,7 +15,7 @@ Xfce是一个基于GTK 3的轻量级模块化桌面，非常简洁，只提供�
 
 进入Xfce的桌面环境，下方是一个**居中面板**，有终端模拟器、文件管理器、网页浏览器等启动器；上方是一个**全宽面板**，面板最左边是应用菜单，右边就是一些小**组件**，如网络管理器、扬声器、电源、通知、日期和时间等，小组件的左边是**工作空间**的入口，默认有四个工作空间，我们现在就处在第一个工作空间，可以通过点击这些入口在不同的工作空间之间切换，面板剩余的部分用于存放已经打开的**窗口**。如下图所示：
 
-![image-20210614200255235](Xfce Intro/image-20210614200255235.png)
+![image-20210614200255235](./Xfce Intro/image-20210614200255235.png)
 
 Xfce简洁而且复古，不像KDE桌面那样现代化，也没有KDE那些强大的功能，窗口也不像KDE那样可以自己定制，但是却内置了一些非常使用的功能。不得不提到的就是下拉终端了。
 
@@ -23,7 +23,7 @@ Xfce简洁而且复古，不像KDE桌面那样现代化，也没有KDE那些强�
 
 ## 下拉终端
 
-Xfce的终端模拟器`xfce4-terminal`默认就支持下拉功能，只需要执行`xfce4-terminal --drop-down`命令就可以打开这样一个下拉终端。为了更方便使用，当然还是要添加到快捷键了。点击右上角的Applications->Settings->Keyboard，在Application Shortcuts标签中添加，命令设置为`xfce4-terminal --drop-down --hide-menubar`，快捷键设置为\<F12>（可以根据个人喜好随意设置）。
+Xfce的终端模拟器`xfce4-terminal`默认就支持下拉功能，只需要执行`xfce4-terminal --drop-down`命令就可以打开这样一个下拉终端。为了更方便使用，当然还是要添加到快捷键了。点击右上角的Applications->Settings->Keyboard，在Application Shortcuts标签中添加，命令设置为`xfce4-terminal --drop-down --hide-menubar`，快捷键设置为<em>\<F12></em>（可以根据个人喜好随意设置）。
 
 ## 截图、图片查看和编辑
 
@@ -37,7 +37,7 @@ Xfce内置的应用查找仅限于在添加到Applications菜单里的应用，�
 $ sudo pacman -S synapse
 ```
 
-将synapse添加到快捷键中，命令设置为`synapse`，快捷键为*Alt+\<F2>*（这个快捷键默认已经分配给了Xfce自带的搜索功能，需要先在快捷键设置中将它删掉或改成其他的）。
+将synapse添加到快捷键中，命令设置为`synapse`，快捷键为<em>Alt+\<F2></em>（这个快捷键默认已经分配给了Xfce自带的搜索功能，需要先在快捷键设置中将它删掉或改成其他的）。
 
 ## 文档
 
