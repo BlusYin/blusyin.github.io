@@ -205,7 +205,24 @@ asmlinkage long sys_hello(void);
 创建文件`test.c`，内容如下：
 
 ```c
-#include <linux/kernel.h>#include <sys/syscall.h>#include <stdio.h>#include <unistd.h>#include <error.h>#define __NR_hello 440int main(int argc, char *argv[]){    long ret;    ret = syscall(__NR_hello);    if (ret < 0)        perror("System call failed.");    else        printf("System call succeeded.");    return 0;}
+#include <linux/kernel.h>
+#include <sys/syscall.h>
+#include <stdio.h>
+#include <unistd.h>
+#include <error.h>
+
+#define __NR_hello 440
+
+int main(int argc, char *argv[])
+{
+    long ret;
+    ret = syscall(__NR_hello);
+    if (ret < 0)
+        perror("System call failed.");
+    else
+        printf("System call succeeded.");
+    return 0;
+}
 ```
 
 编译运行，结果如图：
@@ -237,13 +254,26 @@ asmlinkage long sys_hello(void);
 [添加系统调用](#添加系统调用)这一步是参考了这篇博文https://medium.com/anubhav-shrimal/adding-a-hello-world-system-call-to-linux-kernel-dad32875872, 将函数定义写成下面这样
 
 ```c
-#include <linux/kernel.h>asmlinkage long sys_hello(void){    printk("Hello world\n");    return 0;}
+#include <linux/kernel.h>
+
+asmlinkage long sys_hello(void)
+{
+    printk("Hello world\n");
+    return 0;
+}
 ```
 
 根据报错应该将函数名改成`__x64_sys_hello`，也可以使用宏进行定义：
 
 ```c
-#include <linux/kernel.h>#include <linux/syscalls.h>SYSCALL_DEFINE0(hello){    printk("Hello World\n");    return 0;}
+#include <linux/kernel.h>
+#include <linux/syscalls.h>
+
+SYSCALL_DEFINE0(hello)
+{
+    printk("Hello World\n");
+    return 0;
+}
 ```
 
 注意：我们在“[在系统调用头文件中添加函数的原型](#在系统调用头文件中添加函数的原型)“这一步中添加的函数名不用改，仍然是`sys_hello`。
@@ -253,7 +283,10 @@ asmlinkage long sys_hello(void);
 在使用带参数的系统调用时，若函数原型不使用SYSCALL_DEFINE宏会出现未定义结果，如：
 
 ```c
-asmlinkage long sys_add(int a, int b){	return a+b;}
+asmlinkage long sys_add(int a, int b)
+{
+    return a+b;
+}
 ```
 
 实际调用时得到的返回值是一个无法确定的数。
@@ -263,7 +296,10 @@ asmlinkage long sys_add(int a, int b){	return a+b;}
 解决当然就是使用SYSCALL_DEFINE宏进行定义了：
 
 ```c
-SYSCALL_DEFINE2(add, int, a, int, b){	return a+b;}
+SYSCALL_DEFINE2(add, int, a, int, b)
+{
+    return a+b;
+}
 ```
 
 分析之后再补充。
