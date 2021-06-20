@@ -34,10 +34,10 @@ $ npm -v
 ### 安装Hexo
 
 ```shell
-$ sudo npm install -g hexo-cli # -g表示从git仓库中安装
+$ sudo npm install -g hexo-cli # -g表示系统范围的安装
 ```
 
-库地址https://github.com/hexojs/hexo
+> 如果不添加`-g`参数，npm默认会将软件包安装在当前目录的`node_modules`目录下，并把可执行文件放到`node_modules/.bin`目录下。（全局安装需要root权限）
 
 ## Step2: 配置hexo环境
 
