@@ -37,7 +37,7 @@ $ npm -v
 $ sudo npm install -g hexo-cli # -g表示系统范围的安装
 ```
 
-> 如果不添加`-g`参数，npm默认会将软件包安装在当前目录的`node_modules`目录下，并把可执行文件放到`node_modules/.bin`目录下。（全局安装需要root权限）
+> 如果不添加`-g`参数，npm默认会将软件包安装在当前目录的`node_modules`目录下，并把可执行文件放到`node_modules/.bin`目录下。全局安装会安装在`/usr/lib/node_modules/npm`目录下，且需要root权限）
 
 ## Step2: 配置hexo环境
 
