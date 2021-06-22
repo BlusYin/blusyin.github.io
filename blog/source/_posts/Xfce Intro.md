@@ -13,13 +13,9 @@ tags:
 
 Xfce是一个基于GTK 3的轻量级模块化桌面，非常简洁，只提供窗口管理器，文件管理器，桌面和应用面板，不过这些都足够提供一个完整的用户体验了。
 
-进入Xfce的桌面环境，下方是一个**居中面板**，有终端模拟器、文件管理器、网页浏览器等启动器；上方是一个**全宽面板**，面板最左边是应用菜单，右边就是一些小**组件**，如网络管理器、扬声器、电源、通知、日期和时间等，小组件的左边是**工作空间**的入口，默认有四个工作空间，我们现在就处在第一个工作空间，可以通过点击这些入口在不同的工作空间之间切换，面板剩余的部分用于存放已经打开的**窗口**。如下图所示：
+进入Xfce的桌面环境（如图），下方是一个**居中面板**，有终端模拟器、文件管理器、网页浏览器等启动器；上方是一个**全宽面板**，面板最左边是应用菜单，右边就是一些小**组件**，如网络管理器、扬声器、电源、通知、日期和时间等，小组件的左边是**工作空间**的入口，默认有四个工作空间，我们现在就处在第一个工作空间，可以通过点击这些入口在不同的工作空间之间切换，面板剩余的部分用于存放已经打开的**窗口**。这是一套十分流行的桌面布局，但是图标和窗口就显得相对有些粗糙。
 
 ![image-20210614200255235](./Xfce Intro/image-20210614200255235.png)
-
-Xfce简洁而且复古，不像KDE桌面那样现代化，也没有KDE那些强大的功能，窗口也不像KDE那样可以自己定制，但是却内置了一些非常使用的功能。不得不提到的就是下拉终端了。
-
-> kde下的**关键字动作（keyword action）**是本人非常喜欢的一个功能，非常强大也非常好用
 
 ## 下拉终端
 
@@ -41,7 +37,7 @@ $ sudo pacman -S synapse
 
 ## 文档
 
-Xfce自带了一个文本编辑器Mousepad，和gedit简直一模一样，功能也足够了，但界面不好看，也没有扩展。安装一个VScode用于日常开发（Atom也行）。PDF阅读器有很多，xreader足矣。Office的话Libreoffice或者WPS都还不错。Markdown用Typora。
+Xfce自带了一个文本编辑器Mousepad，和gedit简直一模一样，功能也足够了，但界面不好看，也没有扩展。安装一个VScode用于日常开发。PDF阅读器有很多，xreader足矣。Office的话Libreoffice或者WPS都还不错。Markdown用Typora。
 
 ```shell
 $ sudo pacman -S code xreader libreoffice-fresh   # libreoffice-fresh是稳定版
@@ -50,7 +46,7 @@ $ yay -S typora
 
 ## 中文输入法
 
-安装fcitx5-im（包括fcitx5，fcitx5-configtool，fcitx5-gtk，fcitx5-qt等），fcitx5-chinese-addons。fcitx5-chinese-addons支持云拼音，比fcitx之前的中文输入法好用太多。
+安装fcitx5-im（包括fcitx5，fcitx5-configtool，fcitx5-gtk，fcitx5-qt等），fcitx5-chinese-addons。fcitx5-chinese-addons支持云拼音，比fcitx中支持的中文输入法好用太多。
 
 ```shell
 $ sudo pacman -S fcitx5-im fcitx5-chinese-addons
