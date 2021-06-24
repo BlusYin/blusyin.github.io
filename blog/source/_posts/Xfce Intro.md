@@ -17,19 +17,29 @@ Xfce是一个基于GTK 3的轻量级模块化桌面，非常简洁，只提供�
 
 ![image-20210614200255235](./Xfce Intro/image-20210614200255235.png)
 
-xfce本身提供了一些非常实用的功能，如xfce4-clipman，xfce4-weather-plugin，xfce4-terminal下拉终端等。
-
-## 剪贴板动作
-
-`xfce4-clipman`，剪贴板动作可以通过正则表达式匹配剪贴版内容，根据匹配结果弹出可执行的指令供选择。这相比于KDE的*Web Shortcut*功能扩展性更强，但是不能集成到搜索功能中，而且还是被动触发（复制内容时如果匹配就会弹窗，即使你不希望它弹出来）。
-
-以打开Collions网页查询单词为例。打开Applications->Settings->Clipboard Manager Settings，打开Actions选项卡，点击“+”添加一个action，弹出窗口中，首先给Action命名为“Word Definition”，然后输入要匹配的正则表达式“[a-zA-Z-\s]+”（匹配单词或短语，包括用‘-’连接的组合词），并勾选*Activate only on manual copy*，否则该动作不会生效（见[Actions only work when "Activate on manual copy" is ticked](https://gitlab.xfce.org/panel-plugins/xfce4-clipman-plugin/-/issues/6)）。接着是Command部分，每个action可以有多个Command，每个Command都有一个名称和对应的指令。这里添加一个Command，命名为“Collins Dictionary”， 指令为`exo-open https://www.collinsdictionary.com/dictionary/english/"\0"`，其中“\0”会在指令执行时被所匹配到的内容替代。
-
-> 注意：这里的URL必须用双引号将“\0”包起来，否则如果匹配到的字符串包含换行符，那换行符之后的字符不会被包含在该url中，而是会被当作另一条指令执行，从而导致指令执行时报错：“unable to detect URI-shceme”
+xfce本身提供了一些非常实用的功能，如xfce4-terminal的下拉终端，xfce4-clipman的剪贴板动作，xfce4-appfinder的自定义动作、xfce4-weather-plugin的天气预报等。
 
 ## 下拉终端
 
 Xfce的终端模拟器`xfce4-terminal`默认就支持下拉功能，只需要执行`xfce4-terminal --drop-down`命令就可以打开这样一个下拉终端。为了更方便使用，当然还是要添加到快捷键了。点击右上角的Applications->Settings->Keyboard，在Application Shortcuts标签中添加，命令设置为`xfce4-terminal --drop-down --hide-menubar`，快捷键设置为<em>\<F12></em>（可以根据个人喜好随意设置）。
+
+## 自定义动作
+
+Xfce自带的应用查找工具`xfce4-appfinder`支持自定义动作，自定义动作有两种类型：前缀式和正则式。
+
+前缀式就是通过匹配输入字符串的前缀来指定相应的动作。`xfce4-appfinder`自带的几个实用的动作都是前缀式，其中一个是查询维基百科，前缀是`!w`，相应的指令为`exo-open --launch WebBrowser http://en.wikipedia.org/wiki/%s`（`%s`会被输入字符串中`!w`后面的内容替代）。只要在搜索栏输入`!w xfce`就会打开维基百科的xfce页面。前缀式的设置比较直观，仿照自带的这几个例子很容易就能创建出其他想要的动作。
+
+正则式就是通过正则表达式匹配输入字符串来指定相应的动作。暂时没想到怎么样用，感觉前缀式就足够了。
+
+> 正则表达式如果运用不当，很有可能会使问题变得更复杂。
+
+## 剪贴板动作
+
+`xfce4-clipman`，剪贴板动作可以通过正则表达式匹配剪贴版内容，根据匹配结果弹出可执行的指令供选择。这个动作最大的缺点就是被动触发，复制内容时一旦匹配就会弹窗，即使你不希望它弹出来。
+
+以打开Collins网页查询单词为例。打开Applications->Settings->Clipboard Manager Settings，打开Actions选项卡，点击“+”添加一个action，弹出窗口中，首先给Action命名为“Word Definition”，然后输入要匹配的正则表达式“[a-zA-Z-\s]+”（匹配单词或短语，包括用‘-’连接的组合词），并勾选*Activate only on manual copy*，否则该动作不会生效（见[Actions only work when "Activate on manual copy" is ticked](https://gitlab.xfce.org/panel-plugins/xfce4-clipman-plugin/-/issues/6)）。接着是Command部分，每个action可以有多个Command，每个Command都有一个名称和对应的指令。这里添加一个Command，命名为“Collins Dictionary”， 指令为`exo-open https://www.collinsdictionary.com/dictionary/english/"\0"`，其中“\0”会在指令执行时被所匹配到的内容替代。
+
+> 注意：这里的URL必须用双引号将“\0”包起来，否则如果匹配到的字符串包含换行符，那换行符之后的字符不会被包含在该url中，而是会被当作另一条指令执行，从而导致指令执行时报错：“unable to detect URI-shceme”。或者将指令改成`exo-open --launch WebBrowser https://www.collinsdictionary.com/dictionary/english/\0`就不用双引号了，换行符会被自动替换成一个空格（制表符会被省略）。
 
 ## 截图、图片查看和编辑
 
@@ -44,6 +54,8 @@ $ sudo pacman -S synapse
 ```
 
 将synapse添加到快捷键中，命令设置为`synapse`，快捷键为<em>Alt+\<F2></em>（这个快捷键默认已经分配给了Xfce自带的搜索功能，需要先在快捷键设置中将它删掉或改成其他的）。
+
+> 用了一段时间感觉没多大用，卸了。
 
 ## 文档
 
