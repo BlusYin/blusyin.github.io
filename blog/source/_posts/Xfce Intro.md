@@ -23,7 +23,7 @@ xfce本身提供了一些非常实用的功能，如xfce4-clipman，xfce4-weathe
 
 `xfce4-clipman`，剪贴板动作可以通过正则表达式匹配剪贴版内容，根据匹配结果弹出可执行的指令供选择。这相比于KDE的*Web Shortcut*功能扩展性更强，但是不能集成到搜索功能中，而且还是被动触发（复制内容时如果匹配就会弹窗，即使你不希望它弹出来）。
 
-以打开Collions网页查询单词为例。打开Applications->Settings->Clipboard Manager Settings，打开Actions选项卡，点击“+”添加一个action，弹出窗口中，首先给Action命名为“Word Definition”，然后输入要匹配的正则表达式“[a-zA-Z-\s]+”（匹配单词或短语，包括用‘-’连接的组合词），并勾选*Activate only on manual copy*，否则该动作不会生效（一个bug）。接着是Command部分，每个action可以有多个Command，每个Command都有一个名称和对应的指令。这里添加一个Command，命名为“Collins Dictionary”， 指令为`exo-open https://www.collinsdictionary.com/dictionary/english/"\0"`，其中“\0”会在指令执行时被所匹配到的内容替代。
+以打开Collions网页查询单词为例。打开Applications->Settings->Clipboard Manager Settings，打开Actions选项卡，点击“+”添加一个action，弹出窗口中，首先给Action命名为“Word Definition”，然后输入要匹配的正则表达式“[a-zA-Z-\s]+”（匹配单词或短语，包括用‘-’连接的组合词），并勾选*Activate only on manual copy*，否则该动作不会生效（见[Actions only work when "Activate on manual copy" is ticked](https://gitlab.xfce.org/panel-plugins/xfce4-clipman-plugin/-/issues/6)）。接着是Command部分，每个action可以有多个Command，每个Command都有一个名称和对应的指令。这里添加一个Command，命名为“Collins Dictionary”， 指令为`exo-open https://www.collinsdictionary.com/dictionary/english/"\0"`，其中“\0”会在指令执行时被所匹配到的内容替代。
 
 > 注意：这里的URL必须用双引号将“\0”包起来，否则如果匹配到的字符串包含换行符，那换行符之后的字符不会被包含在该url中，而是会被当作另一条指令执行，从而导致指令执行时报错：“unable to detect URI-shceme”
 
