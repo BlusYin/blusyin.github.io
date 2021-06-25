@@ -32,7 +32,7 @@ Name: Search files
 Description: Search for files in selected location
 Command: catfish --path=%f
 Keyboard Shortcut: Ctrl+F    # 点击按钮然后按Ctrl+F，也可以设置其他快捷键
-Icon: system-search          # 点击按钮然后输入system-search，也可以设置其他图标
+Icon: system-search          # 点击按钮然后输入system-search，双击选择图标，也可以设置其他图标
 ```
 
 然后是Appearance Conditions选项卡，这个设置决定何时在上下文菜单中显示该动作，勾选Directories，并在各个字段填入相应的内容：
@@ -79,7 +79,7 @@ $ sudo pacman -S synapse
 
 ## 文档
 
-Xfce自带了一个文本编辑器Mousepad，和gedit一模一样。安装一个VScode用于日常开发。PDF阅读器有很多，xreader足矣。Office的话Libreoffice或者WPS都还不错（主要是查看用）。Markdown用Typora。
+Xfce自带了一个文本编辑器Mousepad，和gedit简直一模一样。安装一个VScode用于日常开发。PDF阅读器有很多，xreader足矣。Office的话Libreoffice或者WPS都还不错（主要是查看用）。Markdown用Typora。
 
 ```shell
 $ sudo pacman -S code xreader libreoffice-fresh   # libreoffice-fresh是稳定版
@@ -143,7 +143,7 @@ $ sudo pacman -S pavucontrol pulseaudio
 
 ### 在其他窗口滚动鼠标后，当前窗口失去焦点
 
-Applications->Settings->Window Manager Tweaks->Accessibility，取消勾选Raise windows when any mouse button is pressed。
+Applications->Settings->Window Manager Tweaks->Accessibility，取消勾选*Raise windows when any mouse button is pressed*。
 
 ### 用户家目录没有Documents、Downloads、Pictures等默认文件夹
 
@@ -151,6 +151,6 @@ Applications->Settings->Window Manager Tweaks->Accessibility，取消勾选Raise
 
 ### Thunar没有垃圾桶
 
-安装gvfs（Gnome Virtual File System）。
+安装gvfs（Gnome Virtual File System）。需要重启。
 
 ## End
