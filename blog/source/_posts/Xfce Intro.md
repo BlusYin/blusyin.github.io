@@ -153,4 +153,14 @@ Applications->Settings->Window Manager Tweaks->Accessibility，取消勾选*Rais
 
 安装gvfs（Gnome Virtual File System）。需要重启。
 
+### 在文件管理器中快速访问最近打开的文件
+
+编辑`.config/gtk-3.0/bookmarks`文件，在最后添加一行内容：
+
+```
+recent:///
+```
+
+保存后打开`thunar`就能看见Places面板出现了Recent标签，点开就能看到最近访问的文件了。
+
 ## End
