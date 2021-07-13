@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;blusyin.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Xfce是一个基于GTK 3的轻量级模块化桌面，本文介绍Xfce桌面下的一些实用软件及其相关配置，以提高在Xfce桌面的工作效率">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ArchLinux下的Xfce桌面配置">
+<meta property="og:url" content="https://blusyin.github.io/2021/06/14/Xfce%20Intro/">
+<meta property="og:site_name" content="Yalger&#39;s Blog">
+<meta property="og:description" content="Xfce是一个基于GTK 3的轻量级模块化桌面，本文介绍Xfce桌面下的一些实用软件及其相关配置，以提高在Xfce桌面的工作效率">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blusyin.github.io/2021/06/14/Xfce%20Intro/image-20210614200255235.png">
+<meta property="article:published_time" content="2021-06-14T10:55:53.000Z">
+<meta property="article:modified_time" content="2021-07-13T06:31:38.617Z">
+<meta property="article:author" content="Yalger">
+<meta property="article:tag" content="Desktop Environment">
+<meta property="article:tag" content="Productivity">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blusyin.github.io/2021/06/14/Xfce%20Intro/image-20210614200255235.png">
+
+
+<link rel="canonical" href="https://blusyin.github.io/2021/06/14/Xfce%20Intro/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;blusyin.github.io&#x2F;2021&#x2F;06&#x2F;14&#x2F;Xfce%20Intro&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;14&#x2F;Xfce Intro&#x2F;&quot;,&quot;title&quot;:&quot;ArchLinux下的Xfce桌面配置&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>ArchLinux下的Xfce桌面配置 | Yalger's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Yalger's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E6%8B%89%E7%BB%88%E7%AB%AF"><span class="nav-number">1.</span> <span class="nav-text">下拉终端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E6%90%9C%E7%B4%A2"><span class="nav-number">2.</span> <span class="nav-text">文件搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%8A%A8%E4%BD%9C"><span class="nav-number">3.</span> <span class="nav-text">自定义动作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%AA%E8%B4%B4%E6%9D%BF%E5%8A%A8%E4%BD%9C"><span class="nav-number">4.</span> <span class="nav-text">剪贴板动作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%AA%E5%9B%BE%E3%80%81%E5%9B%BE%E7%89%87%E6%9F%A5%E7%9C%8B%E5%92%8C%E7%BC%96%E8%BE%91"><span class="nav-number">5.</span> <span class="nav-text">截图、图片查看和编辑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Synapse"><span class="nav-number">6.</span> <span class="nav-text">Synapse</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%A1%A3"><span class="nav-number">7.</span> <span class="nav-text">文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AD%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95"><span class="nav-number">8.</span> <span class="nav-text">中文输入法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E9%97%AE%E9%A2%98"><span class="nav-number">9.</span> <span class="nav-text">其他问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%AC%E5%A3%B0%E5%99%A8"><span class="nav-number">9.1.</span> <span class="nav-text">扬声器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E5%85%B6%E4%BB%96%E7%AA%97%E5%8F%A3%E6%BB%9A%E5%8A%A8%E9%BC%A0%E6%A0%87%E5%90%8E%EF%BC%8C%E5%BD%93%E5%89%8D%E7%AA%97%E5%8F%A3%E5%A4%B1%E5%8E%BB%E7%84%A6%E7%82%B9"><span class="nav-number">9.2.</span> <span class="nav-text">在其他窗口滚动鼠标后，当前窗口失去焦点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E5%AE%B6%E7%9B%AE%E5%BD%95%E6%B2%A1%E6%9C%89Documents%E3%80%81Downloads%E3%80%81Pictures%E7%AD%89%E9%BB%98%E8%AE%A4%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">9.3.</span> <span class="nav-text">用户家目录没有Documents、Downloads、Pictures等默认文件夹</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thunar%E6%B2%A1%E6%9C%89%E5%9E%83%E5%9C%BE%E6%A1%B6"><span class="nav-number">9.4.</span> <span class="nav-text">Thunar没有垃圾桶</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9C%A8%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8%E4%B8%AD%E5%BF%AB%E9%80%9F%E8%AE%BF%E9%97%AE%E6%9C%80%E8%BF%91%E6%89%93%E5%BC%80%E7%9A%84%E6%96%87%E4%BB%B6"><span class="nav-number">9.5.</span> <span class="nav-text">在文件管理器中快速访问最近打开的文件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#End"><span class="nav-number">10.</span> <span class="nav-text">End</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yalger</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blusyin.github.io/2021/06/14/Xfce%20Intro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yalger">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yalger's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ArchLinux下的Xfce桌面配置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-06-14 18:55:53" itemprop="dateCreated datePublished" datetime="2021-06-14T18:55:53+08:00">2021-06-14</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-07-13 14:31:38" itemprop="dateModified" datetime="2021-07-13T14:31:38+08:00">2021-07-13</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/Xfce/" itemprop="url" rel="index"><span itemprop="name">Xfce</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>路漫漫其修远兮，吾将上下而求索</p>
+</blockquote>
+<p>Xfce是一个基于GTK 3的轻量级模块化桌面，非常简洁，只提供窗口管理器，文件管理器，桌面和应用面板，不过这些都足够提供一个完整的用户体验了。</p>
+<p>进入Xfce的桌面环境（如图），下方是一个<strong>居中面板</strong>，有终端模拟器、文件管理器、网页浏览器等启动器；上方是一个<strong>全宽面板</strong>，面板最左边是应用菜单，右边就是一些小<strong>组件</strong>，如网络管理器、扬声器、电源、通知、日期和时间等，小组件的左边是<strong>工作空间</strong>的入口，默认有四个工作空间，我们现在就处在第一个工作空间，可以通过点击这些入口在不同的工作空间之间切换，面板剩余的部分用于存放已经打开的<strong>窗口</strong>。这是一套十分流行的桌面布局，但是图标和窗口就显得有些粗糙。</p>
+<p><img src="/2021/06/14/Xfce%20Intro/image-20210614200255235.png" alt="image-20210614200255235"></p>
+<p>xfce本身提供了一些非常实用的功能，如xfce4-terminal的下拉终端，xfce4-clipman的剪贴板动作，xfce4-appfinder的自定义动作、xfce4-weather-plugin的天气预报等。</p>
+<h2 id="下拉终端"><a href="#下拉终端" class="headerlink" title="下拉终端"></a>下拉终端</h2><p>Xfce的终端模拟器<code>xfce4-terminal</code>默认就支持下拉功能，只需要执行<code>xfce4-terminal --drop-down</code>命令就可以打开这样一个下拉终端。为了更方便使用，当然还是要添加到快捷键了。点击右上角的Applications-&gt;Settings-&gt;Keyboard，在Application Shortcuts标签中添加，命令设置为<code>xfce4-terminal --drop-down --hide-menubar</code>，快捷键设置为<em>&lt;F12&gt;</em>（可以根据个人喜好随意设置）。</p>
+<h2 id="文件搜索"><a href="#文件搜索" class="headerlink" title="文件搜索"></a>文件搜索</h2><p>Xfce项目中有一个应用<code>catfish</code>可以满足这个需求。安装好后可以通过创建自定义动作集成到<code>thunar</code>中：首先打开<code>thunar</code>，菜单栏依次点击Edit-&gt;Configure custom actions；点击右边的‘+’号创建一个新动作；首先是Basic选项卡，分别在各个字段中填入相应的内容：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">Name:</span> <span class="string">Search</span> <span class="string">files</span></span><br><span class="line"><span class="attr">Description:</span> <span class="string">Search</span> <span class="string">for</span> <span class="string">files</span> <span class="string">in</span> <span class="string">selected</span> <span class="string">location</span></span><br><span class="line"><span class="attr">Command:</span> <span class="string">catfish</span> <span class="string">--path=%f</span></span><br><span class="line"><span class="attr">Keyboard Shortcut:</span> <span class="string">Ctrl+F</span>    <span class="comment"># 点击按钮然后按Ctrl+F，也可以设置其他快捷键</span></span><br><span class="line"><span class="attr">Icon:</span> <span class="string">system-search</span>          <span class="comment"># 点击按钮然后输入system-search，双击选择图标，也可以设置其他图标</span></span><br></pre></td></tr></table></figure>
+
+<p>然后是Appearance Conditions选项卡，这个设置决定何时在上下文菜单中显示该动作，勾选Directories，并在各个字段填入相应的内容：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">File Pattern:</span> <span class="string">*</span>              <span class="comment"># 通配</span></span><br></pre></td></tr></table></figure>
+
+<p>设置完成后点击OK。在<code>thunar</code>中按<em>Ctrl+F</em>或者在右键菜单中点击Search files就会弹出搜索窗。</p>
+<h2 id="自定义动作"><a href="#自定义动作" class="headerlink" title="自定义动作"></a>自定义动作</h2><p>Xfce自带的应用查找工具<code>xfce4-appfinder</code>支持自定义动作，可以在Application Finder的Preference中进行设置。自定义动作有两种类型：前缀式和正则式。</p>
+<p>前缀式就是通过匹配输入字符串的前缀来指定相应的动作。<code>xfce4-appfinder</code>自带的几个实用的动作都是前缀式，其中一个是查询维基百科，前缀是<code>!w</code>，相应的指令为<code>exo-open --launch WebBrowser http://en.wikipedia.org/wiki/%s</code>（<code>%s</code>会被输入字符串中<code>!w</code>后面的内容替代）。只要在搜索栏输入<code>!w xfce</code>就会打开维基百科的xfce页面。前缀式的设置比较直观，仿照自带的这几个例子很容易就能创建出其他想要的动作。</p>
+<p>正则式就是通过正则表达式匹配输入字符串来指定相应的动作。暂时没想到怎么样用，感觉前缀式就足够了。</p>
+<blockquote>
+<p>正则表达式如果运用不当，很有可能会使问题变得更复杂。</p>
+</blockquote>
+<h2 id="剪贴板动作"><a href="#剪贴板动作" class="headerlink" title="剪贴板动作"></a>剪贴板动作</h2><p>这个动作由<code>xfce4-clipman</code>应用中的<code>xfce4-popup-clipman-actions</code>提供，剪贴板动作可以通过正则表达式匹配当前剪贴版内容，根据匹配结果弹出可执行的指令供选择。这个动作最大的缺点就是被动触发，复制内容时一旦匹配就会弹窗，即使你不希望它弹出来。</p>
+<p>以打开Collins网页查询单词为例。打开Applications-&gt;Settings-&gt;Clipboard Manager Settings，打开Actions选项卡，点击“+”添加一个action，弹出窗口中，首先给Action命名为“Word Definition”，然后输入要匹配的正则表达式“[a-zA-Z-\s]+”（匹配单词或短语，包括用‘-’连接的组合词），并勾选<em>Activate only on manual copy</em>，否则该动作不会生效（见<a target="_blank" rel="noopener" href="https://gitlab.xfce.org/panel-plugins/xfce4-clipman-plugin/-/issues/6">Actions only work when “Activate on manual copy” is ticked</a>）。接着是Command部分，每个action可以有多个Command，每个Command都有一个名称和对应的指令。这里添加一个Command，命名为“Collins Dictionary”， 指令为<code>exo-open https://www.collinsdictionary.com/dictionary/english/&quot;\0&quot;</code>，其中“\0”会在指令执行时被所匹配到的内容替代。</p>
+<blockquote>
+<p>注意：这里的URL必须用双引号将“\0”包起来，否则如果匹配到的字符串包含换行符，那换行符之后的字符不会被包含在该url中，而是会被当作另一条指令执行，从而导致指令执行时报错：“unable to detect URI-shceme”。或者将指令改成<code>exo-open --launch WebBrowser https://www.collinsdictionary.com/dictionary/english/\0</code>就不用双引号了，换行符会被自动替换成一个空格（制表符会被省略）。</p>
+</blockquote>
+<h2 id="截图、图片查看和编辑"><a href="#截图、图片查看和编辑" class="headerlink" title="截图、图片查看和编辑"></a>截图、图片查看和编辑</h2><p>Xfce内置的截图工具<code>xfce4-screenshooter</code>也非常好用，而且系统已经配置好了快捷键，<em>Print</em>键全屏截图，<em>Shift+Print</em>区域截图，<em>Alt+Print</em>截取当前窗口，可以在快捷键设置中进行查看和修改。图片查看和编辑分别用的Ristretto（Xfce项目）和mtPaint，都是非常轻量的应用。</p>
+<h2 id="Synapse"><a href="#Synapse" class="headerlink" title="Synapse"></a>Synapse</h2><p>Xfce内置的应用查找仅限于在添加到Applications菜单里的应用，要查找其他应用或者文档就不行了，所以我们需要synapse这个软件，不管是应用、文档还是网页都能检索。首先通过pacman安装synapse</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo pacman -S synapse</span></span><br></pre></td></tr></table></figure>
+
+<p>将synapse添加到快捷键中，命令设置为<code>synapse</code>，快捷键为<em>Alt+&lt;F2&gt;</em>（这个快捷键默认已经分配给了Xfce自带的搜索功能，需要先在快捷键设置中将它删掉或改成其他的）。</p>
+<blockquote>
+<p>用了一段时间感觉没多大用，卸了。</p>
+</blockquote>
+<h2 id="文档"><a href="#文档" class="headerlink" title="文档"></a>文档</h2><p>Xfce自带了一个文本编辑器Mousepad，和gedit简直一模一样。安装一个VScode用于日常开发。PDF阅读器有很多，xreader足矣。Office的话Libreoffice或者WPS都还不错（主要是查看用）。Markdown用Typora。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo pacman -S code xreader libreoffice-fresh   <span class="comment"># libreoffice-fresh是稳定版</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> yay -S typora</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="中文输入法"><a href="#中文输入法" class="headerlink" title="中文输入法"></a>中文输入法</h2><p>安装fcitx5-im（包括fcitx5，fcitx5-configtool，fcitx5-gtk，fcitx5-qt等），fcitx5-chinese-addons。fcitx5-chinese-addons支持云拼音，比fcitx支持的中文输入法好用太多。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo pacman -S fcitx5-im fcitx5-chinese-addons</span></span><br></pre></td></tr></table></figure>
+
+<p>在/etc/environment文件中添加如下内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GTK_IM_MODULE=fcitx</span><br><span class="line">QT_IM_MODULE=fcitx</span><br><span class="line">XMODIFIERS=@im=fcitx</span><br></pre></td></tr></table></figure>
+
+<p>将~/.config/fcitx5/profile修改如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">[Groups/0]</span><br><span class="line"># Group Name</span><br><span class="line">Name=Default</span><br><span class="line"># Layout</span><br><span class="line">Default Layout=us</span><br><span class="line"># Default Input Method</span><br><span class="line">DefaultIM=pinyin</span><br><span class="line"></span><br><span class="line">[Groups/0/Items/0]</span><br><span class="line"># Name</span><br><span class="line">Name=keyboard-us</span><br><span class="line"># Layout</span><br><span class="line">Layout=</span><br><span class="line"></span><br><span class="line">[Groups/0/Items/1]</span><br><span class="line"># Name</span><br><span class="line">Name=pinyin</span><br><span class="line"># Layout</span><br><span class="line">Layout=</span><br><span class="line"></span><br><span class="line">[GroupOrder]</span><br><span class="line">0=Default</span><br></pre></td></tr></table></figure>
+
+<p>logout或者重启即可。通过<em>Ctrl+Space</em>快捷键切换到拼音输入。</p>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><h3 id="扬声器"><a href="#扬声器" class="headerlink" title="扬声器"></a>扬声器</h3><p>安装完Xfce桌面后扬声器用不了，需要安装pavucontrol和pulseaudio这两个包：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo pacman -S pavucontrol pulseaudio</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="在其他窗口滚动鼠标后，当前窗口失去焦点"><a href="#在其他窗口滚动鼠标后，当前窗口失去焦点" class="headerlink" title="在其他窗口滚动鼠标后，当前窗口失去焦点"></a>在其他窗口滚动鼠标后，当前窗口失去焦点</h3><p>Applications-&gt;Settings-&gt;Window Manager Tweaks-&gt;Accessibility，取消勾选<em>Raise windows when any mouse button is pressed</em>。</p>
+<h3 id="用户家目录没有Documents、Downloads、Pictures等默认文件夹"><a href="#用户家目录没有Documents、Downloads、Pictures等默认文件夹" class="headerlink" title="用户家目录没有Documents、Downloads、Pictures等默认文件夹"></a>用户家目录没有Documents、Downloads、Pictures等默认文件夹</h3><p>安装xdg-user-dirs，这是freedesktop标准里的用户家目录管理工具。安装完后执行<code>xdg-user-dirs-update</code>命令，重新登录后家目录下就自动生成了这些目录录。在~/.config目录下可以看到两个配置文件：<code>user-dirs.dirs</code>和<code>user-dirs.locale</code>，前者是相关配置，后者是本地化配置（即语言选项）。</p>
+<h3 id="Thunar没有垃圾桶"><a href="#Thunar没有垃圾桶" class="headerlink" title="Thunar没有垃圾桶"></a>Thunar没有垃圾桶</h3><p>安装gvfs（Gnome Virtual File System）。需要重启。</p>
+<h3 id="在文件管理器中快速访问最近打开的文件"><a href="#在文件管理器中快速访问最近打开的文件" class="headerlink" title="在文件管理器中快速访问最近打开的文件"></a>在文件管理器中快速访问最近打开的文件</h3><p>编辑<code>.config/gtk-3.0/bookmarks</code>文件，在最后添加一行内容：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">recent:///</span><br></pre></td></tr></table></figure>
+
+<p>保存后打开<code>thunar</code>就能看见Places面板出现了Recent标签，点开就能看到最近访问的文件了。</p>
+<h2 id="End"><a href="#End" class="headerlink" title="End"></a>End</h2>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Desktop-Environment/" rel="tag"># Desktop Environment</a>
+              <a href="/tags/Productivity/" rel="tag"># Productivity</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/11/27/Hexo%20More/" rel="prev" title="关于Hexo的配置">
+                  <i class="fa fa-chevron-left"></i> 关于Hexo的配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yalger</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;blusyin.github.io&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;搜索...&quot;,&quot;empty&quot;:&quot;没有找到任何搜索结果：${query}&quot;,&quot;hits_time&quot;:&quot;找到 ${hits} 个搜索结果（用时 ${time} 毫秒）&quot;,&quot;hits&quot;:&quot;找到 ${hits} 个搜索结果&quot;}}</script><script src="/js/config.js"></script>
+<meta name="description" content="在archlinux系统下添加一个hello world系统调用">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux添加系统调用">
+<meta property="og:url" content="https://blusyin.github.io/2020/11/24/Linux%20Syscall/">
+<meta property="og:site_name" content="Yalger&#39;s Blog">
+<meta property="og:description" content="在archlinux系统下添加一个hello world系统调用">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blusyin.github.io/2020/11/24/Linux%20Syscall/image-20201124202147575-1623660503550.png">
+<meta property="og:image" content="https://blusyin.github.io/2020/11/24/Linux%20Syscall/image-20201124202059543-1623660503550.png">
+<meta property="og:image" content="https://blusyin.github.io/2020/11/24/Linux%20Syscall/image-20201124211352907-1623660503550.png">
+<meta property="og:image" content="https://blusyin.github.io/2020/11/24/Linux%20Syscall/Screenshot_20201124_212311-1623660503550.png">
+<meta property="article:published_time" content="2020-11-24T13:59:05.000Z">
+<meta property="article:modified_time" content="2021-07-13T06:31:38.613Z">
+<meta property="article:author" content="Yalger">
+<meta property="article:tag" content="Linux Kernel">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blusyin.github.io/2020/11/24/Linux%20Syscall/image-20201124202147575-1623660503550.png">
+
+
+<link rel="canonical" href="https://blusyin.github.io/2020/11/24/Linux%20Syscall/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;zh-CN&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;https:&#x2F;&#x2F;blusyin.github.io&#x2F;2020&#x2F;11&#x2F;24&#x2F;Linux%20Syscall&#x2F;&quot;,&quot;path&quot;:&quot;2020&#x2F;11&#x2F;24&#x2F;Linux Syscall&#x2F;&quot;,&quot;title&quot;:&quot;Linux添加系统调用&quot;}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
+<title>Linux添加系统调用 | Yalger's Blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Yalger's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF"><span class="nav-number">1.</span> <span class="nav-text">系统信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">安装过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%87%86%E5%A4%87%E9%98%B6%E6%AE%B5"><span class="nav-number">2.1.</span> <span class="nav-text">准备阶段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">2.2.</span> <span class="nav-text">添加系统调用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">2.2.1.</span> <span class="nav-text">创建系统调用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86%E8%AF%A5%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E7%9A%84%E7%9B%AE%E5%BD%95%E6%B7%BB%E5%8A%A0%E5%88%B0%E5%86%85%E6%A0%B8%E7%9A%84makefile%E6%96%87%E4%BB%B6%E4%B8%AD"><span class="nav-number">2.2.2.</span> <span class="nav-text">将该系统调用的目录添加到内核的makefile文件中</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%A4%B4%E6%96%87%E4%BB%B6%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%87%BD%E6%95%B0%E7%9A%84%E5%8E%9F%E5%9E%8B"><span class="nav-number">2.2.3.</span> <span class="nav-text">在系统调用头文件中添加函数的原型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86%E8%B0%83%E7%94%A8%E6%B7%BB%E5%8A%A0%E5%88%B0%E5%86%85%E6%A0%B8%E7%9A%84%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E8%A1%A8%E4%B8%AD"><span class="nav-number">2.2.4.</span> <span class="nav-text">将调用添加到内核的系统调用表中</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8%E5%B9%B6%E5%AE%89%E8%A3%85"><span class="nav-number">2.3.</span> <span class="nav-text">编译内核并安装</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%85%E6%A0%B8%E9%85%8D%E7%BD%AE"><span class="nav-number">2.3.1.</span> <span class="nav-text">内核配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%86%85%E6%A0%B8"><span class="nav-number">2.3.2.</span> <span class="nav-text">编译内核</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%86%85%E6%A0%B8modules"><span class="nav-number">2.3.3.</span> <span class="nav-text">安装内核modules</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86%E5%86%85%E6%A0%B8%E6%98%A0%E5%83%8F%E6%8B%B7%E8%B4%9D%E5%88%B0-boot%E7%9B%AE%E5%BD%95"><span class="nav-number">2.3.4.</span> <span class="nav-text">将内核映像拷贝到&#x2F;boot目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAinitial-RAM-disk"><span class="nav-number">2.3.5.</span> <span class="nav-text">创建initial RAM disk</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%8E%9F%E6%9C%89%E9%85%8D%E7%BD%AE"><span class="nav-number">2.3.5.1.</span> <span class="nav-text">使用系统原有配置</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%87%8D%E6%96%B0%E7%94%9F%E6%88%90"><span class="nav-number">2.3.5.2.</span> <span class="nav-text">重新生成</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6System-map%E6%96%87%E4%BB%B6"><span class="nav-number">2.3.6.</span> <span class="nav-text">复制System.map文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8D%E6%96%B0%E7%94%9F%E6%88%90grub-cfg%E6%96%87%E4%BB%B6"><span class="nav-number">2.3.7.</span> <span class="nav-text">重新生成grub.cfg文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8"><span class="nav-number">2.4.</span> <span class="nav-text">测试系统调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95"><span class="nav-number">3.</span> <span class="nav-text">问题记录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%B8%80"><span class="nav-number">3.1.</span> <span class="nav-text">问题一</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E4%B8%8E%E8%A7%A3%E5%86%B3"><span class="nav-number">3.1.1.</span> <span class="nav-text">分析与解决</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%BA%8C"><span class="nav-number">3.2.</span> <span class="nav-text">问题二</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E4%B8%8E%E8%A7%A3%E5%86%B3-1"><span class="nav-number">3.2.1.</span> <span class="nav-text">分析与解决</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E4%B8%89"><span class="nav-number">3.3.</span> <span class="nav-text">问题三</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%86%E6%9E%90%E4%B8%8E%E8%A7%A3%E5%86%B3-2"><span class="nav-number">3.3.1.</span> <span class="nav-text">分析与解决</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yalger</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives">
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+          </div>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blusyin.github.io/2020/11/24/Linux%20Syscall/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yalger">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yalger's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux添加系统调用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-11-24 21:59:05" itemprop="dateCreated datePublished" datetime="2020-11-24T21:59:05+08:00">2020-11-24</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-07-13 14:31:38" itemprop="dateModified" datetime="2021-07-13T14:31:38+08:00">2021-07-13</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Misc/" itemprop="url" rel="index"><span itemprop="name">Misc</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <blockquote>
+<p>Hope is a good thing, and no good thing ever dies.</p>
+<p>希望，就如同所有美好的事物一样，永远不会消逝。</p>
+</blockquote>
+<h2 id="系统信息"><a href="#系统信息" class="headerlink" title="系统信息"></a>系统信息</h2><p><strong>操作系统:</strong> archlinux-2020.11.01</p>
+<p><strong>架构:</strong> x86_64</p>
+<p><strong>内核版本</strong>: 5.9.10</p>
+<h2 id="安装过程"><a href="#安装过程" class="headerlink" title="安装过程"></a>安装过程</h2><p> 注：为简化过程，全程使用root用户进行</p>
+<h3 id="准备阶段"><a href="#准备阶段" class="headerlink" title="准备阶段"></a>准备阶段</h3><p>安装依赖库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> pacman -S base-devel xmlto kmod inetutils bc libelf git</span></span><br></pre></td></tr></table></figure>
+
+<p>下载内核源码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> wget -P ~/ https://cdn.kernel.org/pub/linux/kernel/v5.x/linux-5.9.10.tar.xz</span></span><br></pre></td></tr></table></figure>
+
+<p>解压并进入解压目录</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> tar -xvf linux-5.9.10.tar.xz -C /usr/src</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> <span class="built_in">cd</span> /usr/src/linux-5.9.10</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="添加系统调用"><a href="#添加系统调用" class="headerlink" title="添加系统调用"></a>添加系统调用</h3><h4 id="创建系统调用"><a href="#创建系统调用" class="headerlink" title="创建系统调用"></a>创建系统调用</h4><p>在解压目录下创建一个文件夹hello，在hello下创建文件hello.c，输入以下内容:</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/syscalls.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">SYSCALL_DEFINE0(hello)</span><br><span class="line">&#123;</span><br><span class="line">    printk(<span class="string">&quot;Hello World\n&quot;</span>); <span class="comment">// 写入到系统日志</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在hello文件夹下创建Makefile文件，输入以下内容:</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">obj-y := hello.o</span><br></pre></td></tr></table></figure>
+
+<h4 id="将该系统调用的目录添加到内核的makefile文件中"><a href="#将该系统调用的目录添加到内核的makefile文件中" class="headerlink" title="将该系统调用的目录添加到内核的makefile文件中"></a>将该系统调用的目录添加到内核的makefile文件中</h4><p>打开解压目录下的Makefile文件，找到下面这行</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">core-y		+= kernel/ certs/ mm/ fs/ ipc/ security/ crypto/ block/</span><br></pre></td></tr></table></figure>
+
+<p> 在该行末尾添加<code> /hello</code>, 添加后如下所示：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">core-y		+= kernel/ certs/ mm/ fs/ ipc/ security/ crypto/ block/ hello/</span><br></pre></td></tr></table></figure>
+
+<h4 id="在系统调用头文件中添加函数的原型"><a href="#在系统调用头文件中添加函数的原型" class="headerlink" title="在系统调用头文件中添加函数的原型"></a>在系统调用头文件中添加函数的原型</h4><p>打开<code>include/linux/syscalls.h</code> 文件，在文件末尾<code>#endif</code>之前添加函数原型，如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">asmlinkage <span class="keyword">long</span> <span class="title">sys_hello</span><span class="params">(<span class="keyword">void</span>)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="将调用添加到内核的系统调用表中"><a href="#将调用添加到内核的系统调用表中" class="headerlink" title="将调用添加到内核的系统调用表中"></a>将调用添加到内核的系统调用表中</h4><p>打开<code>arch/x86/entry/syscalls/syscall_64.tbl</code>文件，找到下面这一行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># x32-specific system call numbers start at 512 to avoid cache impact</span><br></pre></td></tr></table></figure>
+
+<p>在该行上方有许多系统调用，如图所示</p>
+<p><img src="/2020/11/24/Linux%20Syscall/image-20201124202147575-1623660503550.png" alt="image-20201124202147575"></p>
+<p>在编号最大的系统调用也就是439那一行下方添加我们的系统调用，编号为439+1，也就是440，如下图所示：</p>
+<p><img src="/2020/11/24/Linux%20Syscall/image-20201124202059543-1623660503550.png" alt="image-20201124202059543"></p>
+<h3 id="编译内核并安装"><a href="#编译内核并安装" class="headerlink" title="编译内核并安装"></a>编译内核并安装</h3><h4 id="内核配置"><a href="#内核配置" class="headerlink" title="内核配置"></a>内核配置</h4><p>可以复制系统已有配置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> zcat /proc/config.gz &gt; .config</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以手动配置：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> make menuconfig</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="编译内核"><a href="#编译内核" class="headerlink" title="编译内核"></a>编译内核</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> make -j$(nproc)  <span class="comment"># $(nproc) 表示cpu核的数量</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="安装内核modules"><a href="#安装内核modules" class="headerlink" title="安装内核modules"></a>安装内核modules</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> make modules_install -j$(nproc)</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="将内核映像拷贝到-boot目录"><a href="#将内核映像拷贝到-boot目录" class="headerlink" title="将内核映像拷贝到/boot目录"></a>将内核映像拷贝到/boot目录</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> cp -v arch/x86_64/boot/bzImage /boot/vmlinuz-linux59</span></span><br></pre></td></tr></table></figure>
+
+<p>注意：如果是32位系统就要拷贝<code>arch/x86/boot/bzImage</code>文件</p>
+<h4 id="创建initial-RAM-disk"><a href="#创建initial-RAM-disk" class="headerlink" title="创建initial RAM disk"></a>创建initial RAM disk</h4><p>注解：initrd用于在Linux系统启动阶段将一个临时的root文件系统加载到内存中，因为此时真正的root还没有挂载。</p>
+<p>可以使用系统原有配置进行创建，也可以重新生成。</p>
+<h5 id="使用系统原有配置"><a href="#使用系统原有配置" class="headerlink" title="使用系统原有配置"></a>使用系统原有配置</h5><p>先复制一份</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> cp /etc/mkinitcpio.d/linux.preset /etc/mkinitcpio.d/linux59.preset</span></span><br></pre></td></tr></table></figure>
+
+<p>再对新副本做一些修改，修改ALL_kver、default_image、fallback_image这三个变量，修改如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...ALL_kver=&quot;/boot/vmlinuz-linux59&quot;...default_image=&quot;/boot/initramfs-linux59.img&quot;...fallback_image=&quot;/boot/initramfs-linux59-fallback.img&quot;</span><br></pre></td></tr></table></figure>
+
+<p>生成initramfs image:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> mkinitcpio -p linux59 <span class="comment"># 参数linux59表示使用linux59.preset配置</span></span></span><br></pre></td></tr></table></figure>
+
+<h5 id="重新生成"><a href="#重新生成" class="headerlink" title="重新生成"></a>重新生成</h5><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> mkinitcpio -k linux-5.9.10 -g /boot/initramfs-linux59.img</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="复制System-map文件"><a href="#复制System-map文件" class="headerlink" title="复制System.map文件"></a>复制System.map文件</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> cp System.map /boot/System.map</span></span><br></pre></td></tr></table></figure>
+
+<p>这些步骤完成后<code>/boot</code>目录下应该有如下几个文件：</p>
+<p><code>vmlinuz-linux59</code>、<code>initramfs-linux59.img</code>、<code>System.map</code></p>
+<h4 id="重新生成grub-cfg文件"><a href="#重新生成grub-cfg文件" class="headerlink" title="重新生成grub.cfg文件"></a>重新生成grub.cfg文件</h4><p>这一步是添加系统启动时的内核入口</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> grub-mkconfig -o /boot/grub/grub.cfg</span></span><br></pre></td></tr></table></figure>
+
+<p>重启之后就能看到我们的新内核了</p>
+<p><img src="/2020/11/24/Linux%20Syscall/image-20201124211352907-1623660503550.png" alt="image-20201124211352907"></p>
+<h3 id="测试系统调用"><a href="#测试系统调用" class="headerlink" title="测试系统调用"></a>测试系统调用</h3><p>创建文件<code>test.c</code>，内容如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/syscall.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;error.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> __NR_hello 440</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">long</span> ret;</span><br><span class="line">    ret = syscall(__NR_hello);</span><br><span class="line">    <span class="keyword">if</span> (ret &lt; <span class="number">0</span>)</span><br><span class="line">        perror(<span class="string">&quot;System call failed.&quot;</span>);</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;System call succeeded.&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>编译运行，结果如图：</p>
+<p><img src="/2020/11/24/Linux%20Syscall/Screenshot_20201124_212311-1623660503550.png" alt="img"></p>
+<p>添加成功!</p>
+<h2 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h2><h3 id="问题一"><a href="#问题一" class="headerlink" title="问题一"></a>问题一</h3><p>编译时报错：.tmp_vmlinux.btf: pahole (pahole) is not available</p>
+<h4 id="分析与解决"><a href="#分析与解决" class="headerlink" title="分析与解决"></a>分析与解决</h4><p>缺少pahole，安装即可：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> pacman -S pahole</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="问题二"><a href="#问题二" class="headerlink" title="问题二"></a>问题二</h3><p>编译时报错：undefined reference to `__x64_sys_hello’</p>
+<h4 id="分析与解决-1"><a href="#分析与解决-1" class="headerlink" title="分析与解决"></a>分析与解决</h4><p><a href="#%E6%B7%BB%E5%8A%A0%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8">添加系统调用</a>这一步是参考了这篇博文<a target="_blank" rel="noopener" href="https://medium.com/anubhav-shrimal/adding-a-hello-world-system-call-to-linux-kernel-dad32875872">https://medium.com/anubhav-shrimal/adding-a-hello-world-system-call-to-linux-kernel-dad32875872</a>, 将函数定义写成下面这样</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function">asmlinkage <span class="keyword">long</span> <span class="title">sys_hello</span><span class="params">(<span class="keyword">void</span>)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    printk(<span class="string">&quot;Hello world\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>根据报错应该将函数名改成<code>__x64_sys_hello</code>，也可以使用宏进行定义：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/kernel.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;linux/syscalls.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">SYSCALL_DEFINE0(hello)</span><br><span class="line">&#123;</span><br><span class="line">    printk(<span class="string">&quot;Hello World\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：我们在“<a href="#%E5%9C%A8%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8%E5%A4%B4%E6%96%87%E4%BB%B6%E4%B8%AD%E6%B7%BB%E5%8A%A0%E5%87%BD%E6%95%B0%E7%9A%84%E5%8E%9F%E5%9E%8B">在系统调用头文件中添加函数的原型</a>“这一步中添加的函数名不用改，仍然是<code>sys_hello</code>。</p>
+<h3 id="问题三"><a href="#问题三" class="headerlink" title="问题三"></a>问题三</h3><p>在使用带参数的系统调用时，若函数原型不使用SYSCALL_DEFINE宏会出现未定义结果，如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">asmlinkage <span class="keyword">long</span> <span class="title">sys_add</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>实际调用时得到的返回值是一个无法确定的数。</p>
+<h4 id="分析与解决-2"><a href="#分析与解决-2" class="headerlink" title="分析与解决"></a>分析与解决</h4><p>解决当然就是使用SYSCALL_DEFINE宏进行定义了：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SYSCALL_DEFINE2(add, <span class="keyword">int</span>, a, <span class="keyword">int</span>, b)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>分析之后再补充。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Linux-Kernel/" rel="tag"># Linux Kernel</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/11/27/Hexo%20Intro/" rel="next" title="Hexo搭建博客">
+                  Hexo搭建博客 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yalger</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
